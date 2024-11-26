@@ -1,15 +1,10 @@
 // GetFlashCards.tsx
 'use client'
 import { useState,useEffect } from "react";
-import { ObjectId } from "mongodb";
-import clientPromise from "@/utils/mongodb";
+
+
 import DisplayCards from "./display_cards";
 import Chat from "./chat";
-
-interface FlashcardSetFromDB {
-  _id: ObjectId;
-  topic: string;
-}
 
 interface FlashcardSet {
   _id: string;
@@ -17,7 +12,7 @@ interface FlashcardSet {
 }
 
 export default function GetFlashCards() {
-  let serializedFlashcards: FlashcardSet[] = [];
+  
   const [flashcards, setFlashcards] = useState<FlashcardSet[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -75,10 +70,14 @@ export default function GetFlashCards() {
     <div className="flex h-screen">
       {/* Sidebar */}
       <aside className="w-1/4 bg-gray-100 p-4 border-r border-gray-200">
-        {noError ? (
-          <DisplayCards flashcards={flashcards} />
-        ) : (
+        {loading ? (
+          <div className="text-center mt-4">
+          <div className="inline-block w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+        ) : error ? (
           <p>Failed to load flashcards.</p>
+        ) : (
+          <DisplayCards flashcards={flashcards} />
         )}
       </aside>
   

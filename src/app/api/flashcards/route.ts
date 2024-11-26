@@ -4,10 +4,14 @@ import clientPromise from "@/utils/mongodb";
 export async function GET() {
   
   try {
-    console.log("TESTTT")
+    
     const client = await clientPromise;
     const db = client.db("StudyFetchDB");
-    const flashcards = await db.collection("flashcards").find({}).toArray();
+    //const flashcards = await db.collection("flashcards").find({}).toArray();
+    const flashcards = await db
+        .collection("flashcards")
+        .find({}, { projection: { _id: 1, topic: 1 } })
+      .toArray();
 
     return NextResponse.json(flashcards);
   } catch (error) {

@@ -1,7 +1,7 @@
 
 
 import clientPromise from "@/utils/mongodb";
-require("dotenv").config();
+//require("dotenv").config();
 
 export const flash_card_tool = {
     name: "create_flashcard_set",
@@ -25,9 +25,15 @@ export const flash_card_tool = {
       required: ["topic", "flashcards"],
     },
   } as const;
-  
+  interface Flashcard {
+    term: string;
+    definition: string;
+  }
 
-export async function create_flashcard_set(topic:any,flashcards:any){
+export async function create_flashcard_set(
+  topic: string,
+  flashcards: Flashcard[]
+){
     
   try {
     const client = await clientPromise;

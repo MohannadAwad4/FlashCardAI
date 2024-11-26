@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import clientPromise from "@/utils/mongodb";
+//import clientPromise from "@/utils/mongodb";
 import Anthropic from "@anthropic-ai/sdk";
 import { flash_card_tool,create_flashcard_set } from "./tools/FlashCardTools";
 
@@ -28,9 +28,9 @@ export async function POST(req: Request) {
       ],
       
     });
-    console.log("Response size:", JSON.stringify(response).length);
+    
     if (response.stop_reason === "tool_use") {
-      let len = response.content.length
+      const len = response.content.length
       const toolUse = response.content[len-1]; // Adjust according to SDK documentation
       const toolName = toolUse.name;
       const toolInput = toolUse.input;

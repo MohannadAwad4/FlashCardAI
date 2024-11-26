@@ -8,20 +8,18 @@ if (!uri) {
 
 const options: object = {};
 
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
-
 // Use a global variable to ensure a singleton for MongoClient
-declare global {
-  // Adding `global` type for Node.js
-  var _mongoClientPromise: Promise<MongoClient> | undefined;
-}
-
-if (!global._mongoClientPromise) {
-  client = new MongoClient(uri, options);
-  global._mongoClientPromise = client.connect();
-}
-
-clientPromise = global._mongoClientPromise;
+let client: MongoClient;
+const clientPromise: Promise<MongoClient> = (() => {
+  if (!globalThis._mongoClientPromise) {
+    client = new MongoClient(uri, options);
+    globalThis._mongoClientPromise = client.connect();
+  }
+  return globalThis._mongoClientPromise;
+})();
 
 export default clientPromise;
+
+declare global {
+  var _mongoClientPromise: Promise<MongoClient> | undefined; // Explicitly declare for TypeScript
+}
