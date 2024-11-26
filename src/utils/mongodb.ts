@@ -21,5 +21,7 @@ const clientPromise: Promise<MongoClient> = (() => {
 export default clientPromise;
 
 declare global {
+  // eslint-disable-next-line no-var
   var _mongoClientPromise: Promise<MongoClient> | undefined; // Explicitly declare for TypeScript
 }
+

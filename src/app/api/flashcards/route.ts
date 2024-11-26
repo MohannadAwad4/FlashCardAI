@@ -15,6 +15,7 @@ export async function GET() {
 
     return NextResponse.json(flashcards);
   } catch (error) {
+    console.error("Error fetching flashcard sets:", error);
     return NextResponse.json({ error: "Failed to fetch flashcard sets" }, { status: 500 });
   }
 }

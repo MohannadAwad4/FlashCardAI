@@ -17,7 +17,7 @@ export default function GetFlashCards() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [renderFlashCards,setRenderFlashCards] = useState<number>(1)
-  let noError = true;
+  
   // try {
   //   // Fetch data from MongoDB with explicit projection and type
   //   const client = await clientPromise;
