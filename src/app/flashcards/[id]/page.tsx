@@ -13,8 +13,12 @@ interface Flashcard {
     flashcards: Flashcard[];
   }
 //server component to fetch flashcard set id and pass the flashcard to client
-export default async function FlashcardPage({ params }: { params: { id: string } }) {
-  const { id } =  params;
+export default async function FlashcardPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } =  await params;
 
   if (!id || !ObjectId.isValid(id)) {
     return <p>Invalid Flashcard ID</p>;
