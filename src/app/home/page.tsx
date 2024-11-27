@@ -64,7 +64,7 @@ export default function GetFlashCards() {
   };
 
     fetchFlashcards();
-  }, [renderFlashCards]);
+  }, []);
 
   return (
     <div className="flex h-screen">
