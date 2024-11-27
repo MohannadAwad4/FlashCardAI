@@ -1,6 +1,4 @@
 
-/* eslint-disable */
-
 import { NextResponse } from "next/server";
 //import clientPromise from "@/utils/mongodb";
 import Anthropic from "@anthropic-ai/sdk";
