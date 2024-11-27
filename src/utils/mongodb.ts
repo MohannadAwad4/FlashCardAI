@@ -1,8 +1,8 @@
 import { MongoClient } from "mongodb";
 
 // Ensure the environment variable is defined and is a string
-//const uri: string = process.env.MONGODB_URI as string;
-const uri = 'mongodb+srv://Mohannad413:PEpgTLWApSparHA1@studyfetchdb.szlfo.mongodb.net/?retryWrites=true&w=majority&appName=StudyFetchDB'
+const uri: string = process.env.MONGODB_URI as string;
+//const uri = 'mongodb+srv://Mohannad413:PEpgTLWApSparHA1@studyfetchdb.szlfo.mongodb.net/?retryWrites=true&w=majority&appName=StudyFetchDB'
 if (!uri) {
   throw new Error("MONGODB_URI is not defined in .env.local");
 }
