@@ -23,5 +23,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/utils/mongodb.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules","src/app/api/flashcards/create/route.ts"]
 }
