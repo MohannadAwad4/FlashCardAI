@@ -34,8 +34,10 @@ export async function POST(req: Request) {
     
     if (response.stop_reason === "tool_use") {
       const len = response.content.length
-      const toolUse = response.content[len-1]; // Adjust according to SDK documentation
+      const toolUse = response.content[len-1]; 
+      //@ts-expect-error: Suppress TypeScript error for tool_name
       const toolName = toolUse.name;
+      //@ts-expect-error: Suppress TypeScript error for input
       const toolInput = toolUse.input;
       console.log("TOOL BEING USED", toolName, toolInput);
     
@@ -44,7 +46,7 @@ export async function POST(req: Request) {
         await create_flashcard_set(toolInput.topic, toolInput.flashcards);
       }
     }
-    
+    //@ts-expect-error: Suppress TypeScript error for text
     const reply = response.content[0]?.text || "No response available.";
 
     return NextResponse.json({ reply });
